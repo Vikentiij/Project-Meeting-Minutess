@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Edit Topic</h1>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <form method="POST" action="/meetings/{{ topic.meeting_id }}/edit-topic/{{ topic.id }}">
+                <div class="mb-3">
+                    <label>Topic</label>
+                    <textarea rows="3" required placeholder="topic" name="topic" class="form-control">{{ topic.topic }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label>Raised By</label>
+                    <input type="text" required placeholder="raised by" name="raised_by" class="form-control" value="{{ topic.raised_by }}">
+                </div>
+                <div class="mb-3">
+                    <label>Actions Required</label>
+                    <textarea rows="3" required placeholder="actions required" name="actions_required" class="form-control">{{ topic.actions_required }}</textarea>
+                </div>
+                <div class="mb-3">
+                    <label>Action By</label>
+                    <input type="text" required placeholder="action by" name="action_by" class="form-control" value="{{ topic.action_by }}">
+                </div>
+                <div class="mb-3">
+                    <label>To be action by</label>
+                    <input type="date" required placeholder="to be action by" name="to_be_action_by"
+                           value="{{ topic.to_be_action_by }}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+{% endblock content %}

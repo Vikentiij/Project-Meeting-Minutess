@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>{{ meeting.title }}</h1>
+    <p>{{ meeting.date }}</p>
+    <p>Attendants: {{ meeting.attendants }}</p>
+    <p><a href="/meetings/{{ meeting.id }}/edit">Edit</a></p>
+    <hr>
+    <h3>Topics:</h3>
+    <ol>
+        {% for topic in meeting.topics %}
+            <li>
+                <div class="topic">
+                    <p>
+                        <strong>{{ topic.topic }}</strong>
+                        <br>Raised by: {{ topic.raised_by }}
+                        <br>Actions required: {{ topic.actions_required }}
+                        <br>Action by: {{ topic.action_by }}
+                        <br>To be action by: {{ topic.to_be_action_by }}
+                        <br><a href="/meetings/{{ meeting.id }}/edit-topic/{{ topic.id }}">Edit</a>&nbsp;&nbsp;<a
+                            href="/meetings/{{ meeting.id }}/delete-topic/{{ topic.id }}">Delete</a>
+                    </p>
+                </div>
+            </li>
+        {% endfor %}
+    </ol>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <h4>Add topic</h4>
+            <form method="POST" action="/meetings/{{ meeting.id }}/add-topic">
+                <div class="mb-3">
+                    <label>Topic</label>
+                    <textarea rows="3" required placeholder="topic" name="topic" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label>Raised By</label>
+                    <input type="text" required placeholder="raised by" name="raised_by" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>Actions required</label>
+                    <textarea rows="2" required placeholder="actions required" name="actions_required" class="form-control"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label>Action By</label>
+                    <input type="text" required placeholder="action by" name="action_by" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label>To be action by</label>
+                    <input type="date" required placeholder="to be action by" name="to_be_action_by"
+                           value="{{ to_be_action_by }}" class="form-control">
+                </div>
+                <button type="submit" class="btn btn-primary">Add topic</button>
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+{% endblock content %}

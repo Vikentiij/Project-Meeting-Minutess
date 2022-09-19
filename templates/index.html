@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-12">
+            <h1>Meeting Minutes</h1>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Attendants</th>
+                    <th scope="col">Created By</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for meeting in meetings %}
+                    <tr>
+                        <td scope="row">{{ meeting.title }}</td>
+                        <td>{{ meeting.date }}</td>
+                        <td>{{ meeting.attendants }}</td>
+                        <td>{{ meeting.creator.name }}</td>
+                        <td>
+                            <a href="/meetings/{{ meeting.id }}/view">View</a>
+                            &nbsp;
+                            <a href="/meetings/{{ meeting.id }}/edit">Edit</a>
+                            &nbsp;
+                            <a href="/meetings/{{ meeting.id }}/delete">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-10"></div>
+        <div class="col-1">
+            <a href="/meetings/create">New&nbsp;Meeting</a>
+        </div>
+    </div>
+{% endblock content %}

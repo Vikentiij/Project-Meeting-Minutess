@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Are you sure you want to delete {{ topic.topic }}?</h1>
+
+    <form method="POST" action="/meetings/{{ topic.meeting_id }}/delete-topic/{{ topic.id }}">
+        <button type="submit" class="btn btn-primary">Delete</button>
+        <a class="btn btn-secondary" href="/meetings/{{ topic.meeting_id }}/view">Cancel</a>
+    </form>
+{% endblock content %}
